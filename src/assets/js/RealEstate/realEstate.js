@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import listingsData from "./assets/js/RealEstate/Data/listingsData";
-import Header from "./assets/js/RealEstate/Header.js";
-import Filter from "./assets/js/RealEstate/Filter";
-import Listings from "./assets/js/RealEstate/Listings";
-import "./assets/sass/main.scss";
+import ReactDOM from "react-dom";
+import Header from "./Header";
+import Filter from "./Filter";
+import Listings from "./Listings";
+import listingsData from "./Data/listingsData";
 
 class App extends Component {
   constructor() {
@@ -78,63 +78,61 @@ class App extends Component {
       );
     });
 
-    if (this.state.city !== "All") {
+    if (this.state.city != "All") {
       newData = newData.filter(item => {
-        return item.city === this.state.city;
+        return item.city == this.state.city;
       });
     }
 
-    if (this.state.homeType !== "All") {
+    if (this.state.homeType != "All") {
       newData = newData.filter(item => {
-        return item.homeType === this.state.homeType;
+        return item.homeType == this.state.homeType;
       });
     }
 
-    if (this.state.sortby === "price-dsc") {
+    if (this.state.sortby == "price-dsc") {
       newData = newData.sort((a, b) => {
         return a.price - b.price;
       });
     }
 
-    if (this.state.sortby === "price-asc") {
+    if (this.state.sortby == "price-asc") {
       newData = newData.sort((a, b) => {
         return b.price - a.price;
       });
     }
 
-    if (this.state.search !== "") {
+    if (this.state.search != "") {
       newData = newData.filter(item => {
         var city = item.city.toLowerCase();
         var searchText = this.state.search.toLowerCase();
         var n = city.match(searchText);
 
-        if (n !== null) {
+        if (n != null) {
           return true;
-        } else {
-          return false;
         }
       });
     }
 
-    if (this.state.swimming_pool === true) {
+    if (this.state.swimming_pool == true) {
       newData = newData.filter(item => {
         return item.extras.includes("swimming pool");
       });
     }
 
-    if (this.state.elevator === true) {
+    if (this.state.elevator == true) {
       newData = newData.filter(item => {
         return item.extras.includes("elevator");
       });
     }
 
-    if (this.state.finished_basement === true) {
+    if (this.state.finished_basement == true) {
       newData = newData.filter(item => {
         return item.extras.includes("finished basement");
       });
     }
 
-    if (this.state.gym === true) {
+    if (this.state.gym == true) {
       newData = newData.filter(item => {
         return item.extras.includes("gym");
       });
@@ -187,7 +185,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("this.state.listingsData:", this.state.listingsData);
     return (
       <div>
         <Header />
@@ -209,4 +206,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const app = document.getElementById("app");
+
+ReactDOM.render(<App />, app);
