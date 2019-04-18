@@ -12,13 +12,13 @@ class Listings extends Component {
   loopListings() {
     const { listingsData } = this.props;
 
-    if (listingsData == undefined || listingsData.length == 0) {
+    if (listingsData === undefined || listingsData.length === 0) {
       return "Sorry your filter did not match any listings";
     }
 
     return listingsData.map((listing, index) => {
       // THIS IS THE BOX VIEW
-      if (this.props.globalState.view == "box") {
+      if (this.props.globalState.view === "box") {
         return (
           <div className="col-md-3 col-sm-6 col-xs-12 clearfix" key={index}>
             <div className="listing">
@@ -120,14 +120,6 @@ class Listings extends Component {
         <section className="search-area">
           <input type="text" name="search" onChange={this.props.change} />
         </section>
-
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="customCheck1"
-          />
-        </div>
 
         <section className="sortby-area">
           <div className="results">
