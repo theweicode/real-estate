@@ -21,7 +21,7 @@ var listingsData = [
     extras: [],
     homeType: "House",
     image:
-      "http://decorationchannel.com/wp-content/uploads/2011/12/modern-house-with-glass-wall.jpg"
+      "https://decorationchannel.com/wp-content/uploads/2011/12/modern-house-with-glass-wall.jpg"
   },
   {
     address: "32 E. Peltason",
@@ -104,7 +104,7 @@ var listingsData = [
     extras: [],
     homeType: "Townhouse",
     image:
-      "http://siliconvalleypropertynerds.com/wp-content/uploads/2018/01/Modern-home.jpg"
+      "https://siliconvalleypropertynerds.com/wp-content/uploads/2018/01/Modern-home.jpg"
   },
   {
     address: "442 Winslow",
@@ -128,7 +128,7 @@ var listingsData = [
     extras: ["gym"],
     homeType: "Townhome",
     image:
-      "http://www.contemporist.com/wp-content/uploads/2016/08/contemporary-house_080816_01-800x534.jpg"
+      "https://www.contemporist.com/wp-content/uploads/2016/08/contemporary-house_080816_01-800x534.jpg"
   }
 ];
 
