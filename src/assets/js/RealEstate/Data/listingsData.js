@@ -104,7 +104,7 @@ var listingsData = [
     extras: [],
     homeType: "Townhouse",
     image:
-      "https://siliconvalleypropertynerds.com/wp-content/uploads/2018/01/Modern-home.jpg"
+      "https://static.dezeen.com/uploads/2017/08/ocotea-street-in-situ-studio-architecture_dezeen_hero-1-1704x959.jpg"
   },
   {
     address: "442 Winslow",

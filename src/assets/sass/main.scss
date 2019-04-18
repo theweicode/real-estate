@@ -14,3 +14,73 @@ body {
 
 @import "listings";
 @import "content-area";
+
+@media (max-width: 767px) {
+
+
+  header {
+    nav {
+      a {
+
+        float: right;
+        font-size: 0.8rem;
+        font-weight: 500;
+
+
+
+      }
+    }
+
+
+  }
+
+
+
+
+  #filter {
+    select {
+
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: .25rem;
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+
+    }
+
+  }
+
+  #listings {
+    .sortby-area {
+      .sort-options {
+        select {
+          font-size: 0.6rem;
+          margin-right: 0px;
+          font-weight: 600;
+          padding: 5px 5px;
+        }
+      }
+    }
+  }
+
+
+
+
+}

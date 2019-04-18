@@ -19,7 +19,7 @@ class Filter extends Component {
   }
   cities() {
     var { cities } = this.props.globalState.populateFormsData;
-    if (cities != undefined) {
+    if (cities !== undefined) {
       return cities.map(item => {
         return (
           <option key={item} value={item}>
@@ -31,7 +31,7 @@ class Filter extends Component {
   }
   homeTypes() {
     var { homeTypes } = this.props.globalState.populateFormsData;
-    if (homeTypes != undefined) {
+    if (homeTypes !== undefined) {
       console.log(homeTypes);
       return homeTypes.map(item => {
         return (
@@ -44,7 +44,7 @@ class Filter extends Component {
   }
   bedrooms() {
     var { bedrooms } = this.props.globalState.populateFormsData;
-    if (bedrooms != undefined) {
+    if (bedrooms !== undefined) {
       return bedrooms.map(item => {
         return (
           <option key={item} value={item}>
@@ -58,6 +58,7 @@ class Filter extends Component {
   render() {
     return (
       <section id="filter">
+        <div className="mobile" />
         <div className="inside">
           <h4>Filter</h4>
           <label htmlFor="city">City</label>
