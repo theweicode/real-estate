@@ -15,7 +15,7 @@ class Header extends Component {
     return (
       <header>
         <div className="logo">
-          <img src="/img/WT-1.png" />
+          <img src="https://i.imgur.com/1fXUQ8a.png" />
         </div>
         <nav>
           <a href="#">Create Ads</a>
