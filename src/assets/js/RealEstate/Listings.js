@@ -4,9 +4,10 @@ class Listings extends Component {
   constructor() {
     super();
     this.state = {
-      name: "Joe"
+      viewListing: true
     };
     this.loopListings = this.loopListings.bind(this);
+    this.viewListing = this.viewListing.bind(this);
   }
 
   loopListings() {
@@ -17,6 +18,7 @@ class Listings extends Component {
     }
 
     return listingsData.map((listing, index) => {
+      var listImg = listing.background;
       // THIS IS THE BOX VIEW
       if (this.props.globalState.view === "box") {
         return (
@@ -48,7 +50,9 @@ class Listings extends Component {
                         <span>{listing.rooms} bedrooms</span>
                       </div>
                     </div>
-                    <div className="view-btn">View Listing</div>
+                    <div className="view-btn" onClick={this.viewListing}>
+                      View Listing
+                    </div>
                   </div>
                 </div>
               </div>
@@ -93,7 +97,25 @@ class Listings extends Component {
                         <span>{listing.rooms} bedrooms</span>
                       </div>
                     </div>
-                    <div className="view-btn">View Listing</div>
+                    <div className="view-btn" onClick={this.viewListing}>
+                      View Listing
+                    </div>
+                    <div
+                      className={this.state.viewListing ? "" : "listing-active"}
+                    >
+                      <div id="listing" onClick={this.viewListing}>
+                        <div
+                          className="background"
+                          style={{
+                            background: `url(${
+                              listing.image
+                            }) no-repeat center center`
+                          }}
+                        >
+                          {listing.address}{" "}
+                        </div>
+                      </div>{" "}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -108,6 +130,12 @@ class Listings extends Component {
           </div>
         );
       }
+    });
+  }
+
+  viewListing() {
+    this.setState({
+      viewListing: !this.state.viewListing
     });
   }
 

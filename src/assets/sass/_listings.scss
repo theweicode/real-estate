@@ -42,3 +42,45 @@ header {
 
     }
 }
+
+#listing {
+    position: fixed;
+    transform: translate3d(-50%, 0, 0);
+    top: 0;
+    bottom: 0;
+
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+
+}
+
+.listing-active {
+    #listing {
+        background-color: rgba($darkpurple, .8);
+
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: all .5s ease-in;
+        z-index: 1;
+
+        .background {
+
+            background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -webkit-background-size: cover;
+            width: 80%;
+            height: 80%;
+
+        }
+    }
+
+}

@@ -3,6 +3,8 @@ import listingsData from "./assets/js/RealEstate/Data/listingsData";
 import Header from "./assets/js/RealEstate/Header.js";
 import Filter from "./assets/js/RealEstate/Filter";
 import Listings from "./assets/js/RealEstate/Listings";
+import firebase from "firebase";
+
 import "./assets/sass/main.scss";
 
 class App extends Component {
@@ -32,9 +34,20 @@ class App extends Component {
     this.filteredData = this.filteredData.bind(this);
     this.populateForms = this.populateForms.bind(this);
     this.changeView = this.changeView.bind(this);
+    this.handleAnonSI = this.handleAnonSI.bind(this);
   }
 
   componentWillMount() {
+    var config = {
+      apiKey: "AIzaSyCTR19HkSG-8jfVPz_QONEk7HPlLuF7Bd0",
+      authDomain: "portfolio-realestate-app.firebaseapp.com",
+      databaseURL: "https://portfolio-realestate-app.firebaseio.com",
+      projectId: "portfolio-realestate-app",
+      storageBucket: "portfolio-realestate-app.appspot.com",
+      messagingSenderId: "735297484298"
+    };
+    firebase.initializeApp(config);
+
     let listingsData2 = listingsData.sort((a, b) => {
       return a.price - b.price;
     });
@@ -186,11 +199,39 @@ class App extends Component {
     );
   }
 
+  handleAnonSI() {
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(function(error) {
+        // Handle Errors here.
+        /*   var errorCode = error.code;
+        var errorMessage = error.message; */
+        // ...
+      });
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+
+        console.log(isAnonymous, uid);
+        // ...
+      } else {
+        // User is signed out.
+        // ...
+      }
+      // ...
+    });
+  }
+
   render() {
-    console.log("this.state.listingsData:", this.state.listingsData);
     return (
       <div>
         <Header />
+        {/* <button onClick={this.handleAnonSI}>Sign In Anonymously</button> */}
+
         <section id="content-area">
           <Filter
             change={this.change}
