@@ -16,7 +16,7 @@ class Header extends Component {
     this.handleSignUp = this.handleSignUp.bind(this);
 
     this.state = {
-      showSignUp: true,
+      showSignUp: false,
       showLogin: false,
       guestLogin: false,
       username: "",
@@ -146,7 +146,9 @@ class Header extends Component {
     let logUsr;
     let loginEr = this.state.loginError;
     if (this.state.guestLogin) {
-      logUsr = <h3>Logged in as: {this.state.username}</h3>;
+      logUsr = (
+        <h3 className="loggedinas">Logged in as: {this.state.username}</h3>
+      );
     }
     return (
       <>
@@ -157,9 +159,9 @@ class Header extends Component {
           {logUsr}
 
           <nav>
-            <a href="#">Create Ads</a>
-            <a href="#">About Us</a>
-            <a onClick={this.showLogin}>Log In</a>
+            <a className="login-btn" onClick={this.showLogin}>
+              Log In
+            </a>
             <a onClick={this.showSignUp} className="register-btn">
               Register
             </a>
@@ -278,12 +280,15 @@ class Header extends Component {
 
           <Modal.Footer>
             <Button
-              variant="dark"
+              variant="warning"
               onClick={event => {
-                this.hideLogin();
-                this.handleGuestLogin();
+                this.hideSignUp();
+                this.showLogin();
               }}
             >
+              Already have an account?
+            </Button>
+            <Button variant="dark" onClick={this.handleSuccessSignUp}>
               Login As Guest
             </Button>
             <Button variant="secondary" onClick={this.hideLogin}>

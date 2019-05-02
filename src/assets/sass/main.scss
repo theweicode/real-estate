@@ -10,6 +10,7 @@ body {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
   // background: purple;
+  transition: ease-in-out;
 }
 
 @import "listings";
@@ -88,4 +89,14 @@ body {
 .anon {
   color: red;
   font-size: 1rem;
+}
+
+.register-btn,
+.login-btn {
+  cursor: pointer;
+}
+
+.loggedinas {
+
+  color: red;
 }
