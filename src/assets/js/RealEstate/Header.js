@@ -14,6 +14,7 @@ class Header extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
 
     this.state = {
       showSignUp: false,
@@ -77,31 +78,6 @@ class Header extends Component {
       }.bind(this)
     );
   }
-  handleEMSI() {
-    firebase
-      .auth()
-      .signInAnonymously()
-      .catch(function(error) {
-        // Handle Errors here.
-        /*   var errorCode = error.code;
-        var errorMessage = error.message; */
-        // ...
-      });
-
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-
-        // ...
-      } else {
-        // User is signed out.
-        // ...
-      }
-      // ...
-    });
-  }
 
   handleSignUp(e) {
     e.preventDefault();
@@ -140,6 +116,41 @@ class Header extends Component {
           this.setState({ loginError: errorMessage });
         }.bind(this)
       );
+
+    firebase.auth().onAuthStateChanged(
+      function(user) {
+        if (user) {
+          // User is signed in.
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          var isAnonymous = user.isAnonymous;
+          var uid = user.uid;
+          var providerData = user.providerData;
+          this.setState({ username: email });
+          this.setState({ guestLogin: true });
+          console.log(this.state.username);
+          // ...
+        } else {
+          // User is signed out.
+          // ...
+        }
+      }.bind(this)
+    );
+  }
+
+  handleSignOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        // Sign-out successful.
+      })
+      .catch(function(error) {
+        // An error happened.
+      });
+    this.setState({ guestLogin: false });
   }
 
   render() {
@@ -147,7 +158,10 @@ class Header extends Component {
     let loginEr = this.state.loginError;
     if (this.state.guestLogin) {
       logUsr = (
-        <h3 className="loggedinas">Logged in as: {this.state.username}</h3>
+        <>
+          <h3 className="loggedinas">Logged in as: {this.state.username}</h3>
+          <Button onClick={this.handleSignOut}>Sign Out</Button>
+        </>
       );
     }
     return (
@@ -205,7 +219,13 @@ class Header extends Component {
             />
           </div>
           {loginEr}
-          <Button variant="primary" onClick={this.handleLogin}>
+          <Button
+            variant="primary"
+            onClick={event => {
+              this.handleLogin();
+              this.hideLogin();
+            }}
+          >
             Login
           </Button>
 
@@ -288,10 +308,16 @@ class Header extends Component {
             >
               Already have an account?
             </Button>
-            <Button variant="dark" onClick={this.handleSuccessSignUp}>
+            <Button
+              variant="dark"
+              onClick={event => {
+                this.hideSignUp();
+                this.handleGuestLogin();
+              }}
+            >
               Login As Guest
             </Button>
-            <Button variant="secondary" onClick={this.hideLogin}>
+            <Button variant="secondary" onClick={this.hideSignUp}>
               Close
             </Button>
           </Modal.Footer>
