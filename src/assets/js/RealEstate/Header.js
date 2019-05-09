@@ -167,9 +167,9 @@ class Header extends Component {
     return (
       <>
         <header>
-          <div className="logo">
+          <a href="/" className="logo">
             <img src="https://i.imgur.com/1fXUQ8a.png" />
-          </div>
+          </a>
           {logUsr}
 
           <nav>

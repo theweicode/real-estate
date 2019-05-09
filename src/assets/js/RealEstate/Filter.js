@@ -17,6 +17,13 @@ class Filter extends Component {
   componentWillMount() {
     this.props.populateAction();
   }
+
+  componentDidUpdate() {
+    /* console.log(
+      "this.props.globalState.populateFormsData: ",
+      this.props.globalState.populateFormsData
+    ); */
+  }
   cities() {
     var { cities } = this.props.globalState.populateFormsData;
     if (cities !== undefined) {

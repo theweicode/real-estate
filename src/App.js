@@ -3,18 +3,18 @@ import Header from "./assets/js/RealEstate/Header.js";
 import Filter from "./assets/js/RealEstate/Filter";
 import Listings from "./assets/js/RealEstate/Listings";
 import firebase from "./assets/js/RealEstate/Firebase";
-import listingsData from "./assets/js/RealEstate/Data/listingsData";
+/* import listingsData from "./assets/js/RealEstate/Data/listingsData"; */
 
 import "./assets/sass/main.scss";
 
-/* let listingsData = [];
- */
+let listingsData = [];
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       name: "Joe",
-      listingsData,
+      listingsData: [],
       city: "All",
       homeType: "All",
       bedrooms: 0,
@@ -39,24 +39,17 @@ class App extends Component {
     this.handleAnonSI = this.handleAnonSI.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.onRealTimeListener();
+  }
+
   componentWillMount() {
     /* adding data to firebase remove after data has been added 
     // Add a new document in collection "cities"
     db.collection("listingsData")
-      .doc()
-      .set({
-        address: "155 Glasslow St.",
-        seller: "Edward Cornfield",
-        date: "5/8/2019",
-        city: "Miami",
-        state: "FL",
-        rooms: 4,
-        price: 825000,
-        floorSpace: 2600,
-        extras: ["gym"],
-        homeType: "Townhome",
-        image:
+      .doc("3IbIg6wvb7jTFXYLJCve")
+      .add({
+        carousel:
           "https://www.contemporist.com/wp-content/uploads/2016/08/contemporary-house_080816_01-800x534.jpg"
       })
       .then(function() {
@@ -65,13 +58,57 @@ class App extends Component {
       .catch(function(error) {
         console.error("Error writing document: ", error);
       });
-     adding data to firebase remove after data has been added */
+    /* adding data to firebase remove after data has been added */
+  }
 
-    let listingsData2 = this.state.listingsData.sort((a, b) => {
+  renderHouseList(change) {
+    /* console.log(
+      "data has been added: ",
+      cars.type,
+      cars.doc.id,
+      cars.doc.data()
+    ); */
+    var newArray = this.state.filteredData.slice();
+    newArray.push(change.doc.data());
+    newArray[this.state.filteredData.length].id = change.doc.id;
+    newArray[this.state.filteredData.length].count = [
+      this.state.filteredData.length + 1
+    ];
+    this.setState({
+      filteredData: newArray
+    });
+  }
+
+  handleRemoveFromList(id) {
+    this.setState(prevState => {
+      return {
+        cars_owned: prevState.cars_owned.filter(p => p.id !== id)
+      };
+    });
+  }
+
+  onRealTimeListener() {
+    firebase
+      .firestore()
+      .collection("listingsData")
+
+      .onSnapshot(snapshot => {
+        let changes = snapshot.docChanges();
+        changes.forEach(change => {
+          if (change.type === "added") {
+            this.renderHouseList(change);
+            console.log("item added: ", change);
+          } else if (change.type === "removed") {
+            this.handleRemoveFromList(change.doc.id);
+          }
+        });
+      });
+
+    let listingsData2 = this.state.filteredData.sort((a, b) => {
       return a.price - b.price;
     });
     this.setState({
-      listingsData: listingsData2
+      filteredData: listingsData2
     });
   }
 
@@ -100,7 +137,7 @@ class App extends Component {
   }
 
   filteredData() {
-    let newData = this.state.listingsData.filter(item => {
+    let newData = this.state.filteredData.filter(item => {
       return (
         item.price >= this.state.min_price &&
         item.price <= this.state.max_price &&
@@ -179,15 +216,16 @@ class App extends Component {
 
   populateForms() {
     // city
-    let cities = this.state.listingsData.map(item => {
+    let cities = this.state.filteredData.map(item => {
       return item.city;
     });
+
     //Set takes the list and make sure there are no doubles
     cities = new Set(cities);
     cities = [...cities];
     cities = cities.sort();
     // hometype
-    let homeTypes = this.state.listingsData.map(item => {
+    let homeTypes = this.state.filteredData.map(item => {
       return item.homeType;
     });
     //Set takes the list and make sure there are no doubles
@@ -196,7 +234,7 @@ class App extends Component {
     homeTypes = homeTypes.sort();
 
     // bedrooms
-    let bedrooms = this.state.listingsData.map(item => {
+    let bedrooms = this.state.filteredData.map(item => {
       return item.rooms;
     });
     //Set takes the list and make sure there are no doubles

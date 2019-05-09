@@ -20,9 +20,11 @@ class Listings extends Component {
     if (listingsData === undefined || listingsData.length === 0) {
       return "Sorry your filter did not match any listings";
     }
-
+    console.log("listingsData: ", listingsData);
     return listingsData.map((listing, index) => {
       var listImg = listing.background;
+      var carouselImg = listing.carousel;
+      console.log("listing: ", listing);
       let modalClose = () => this.setState({ modalShow: false });
       // THIS IS THE BOX VIEW
       if (this.props.globalState.view === "box") {
@@ -66,6 +68,7 @@ class Listings extends Component {
                           show={this.state.modalShow}
                           onHide={modalClose}
                           address={listing.address}
+                          carousel={listing.carousel}
                         />
                       </ButtonToolbar>
                     </div>
@@ -127,6 +130,7 @@ class Listings extends Component {
                         show={this.state.modalShow}
                         onHide={modalClose}
                         address={listing.address}
+                        carousel={listing.carousel}
                       />
                     </ButtonToolbar>
                     <div>
@@ -166,10 +170,6 @@ class Listings extends Component {
       viewListing: !this.state.viewListing
     });
   }
-
-  clickedBtn = () => {
-    console.log("swag");
-  };
 
   render() {
     return (
