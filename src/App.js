@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import listingsData from "./assets/js/RealEstate/Data/listingsData";
 import Header from "./assets/js/RealEstate/Header.js";
 import Filter from "./assets/js/RealEstate/Filter";
 import Listings from "./assets/js/RealEstate/Listings";
-import firebase from "firebase";
+import firebase from "./assets/js/RealEstate/Firebase";
+import listingsData from "./assets/js/RealEstate/Data/listingsData";
 
 import "./assets/sass/main.scss";
 
+/* let listingsData = [];
+ */
 class App extends Component {
   constructor() {
     super();
@@ -37,18 +39,35 @@ class App extends Component {
     this.handleAnonSI = this.handleAnonSI.bind(this);
   }
 
+  componentDidMount() {}
   componentWillMount() {
-    var config = {
-      apiKey: "AIzaSyCTR19HkSG-8jfVPz_QONEk7HPlLuF7Bd0",
-      authDomain: "portfolio-realestate-app.firebaseapp.com",
-      databaseURL: "https://portfolio-realestate-app.firebaseio.com",
-      projectId: "portfolio-realestate-app",
-      storageBucket: "portfolio-realestate-app.appspot.com",
-      messagingSenderId: "735297484298"
-    };
-    firebase.initializeApp(config);
+    /* adding data to firebase remove after data has been added 
+    // Add a new document in collection "cities"
+    db.collection("listingsData")
+      .doc()
+      .set({
+        address: "155 Glasslow St.",
+        seller: "Edward Cornfield",
+        date: "5/8/2019",
+        city: "Miami",
+        state: "FL",
+        rooms: 4,
+        price: 825000,
+        floorSpace: 2600,
+        extras: ["gym"],
+        homeType: "Townhome",
+        image:
+          "https://www.contemporist.com/wp-content/uploads/2016/08/contemporary-house_080816_01-800x534.jpg"
+      })
+      .then(function() {
+        console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+        console.error("Error writing document: ", error);
+      });
+     adding data to firebase remove after data has been added */
 
-    let listingsData2 = listingsData.sort((a, b) => {
+    let listingsData2 = this.state.listingsData.sort((a, b) => {
       return a.price - b.price;
     });
     this.setState({

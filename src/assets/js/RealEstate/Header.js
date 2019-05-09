@@ -181,7 +181,12 @@ class Header extends Component {
             </a>
           </nav>
         </header>
-        <Modal show={this.state.showLogin} onHide={this.hideLogin}>
+        <Modal
+          show={this.state.showLogin}
+          onHide={this.hideLogin}
+          animation="true"
+          centered="true"
+        >
           <Modal.Header closeButton>
             <Modal.Title>Log In</Modal.Title>
           </Modal.Header>

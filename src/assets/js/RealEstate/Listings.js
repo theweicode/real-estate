@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import ListingsView from "./ListingsView";
+import ButtonToolbar from "react-bootstrap/Button";
 
 class Listings extends Component {
   constructor() {
     super();
     this.state = {
-      viewListing: true
+      modalShow: false
     };
     this.loopListings = this.loopListings.bind(this);
-    this.viewListing = this.viewListing.bind(this);
+    /* this.modalShow = this.modalShow.bind(this); */
   }
 
   loopListings() {
@@ -19,6 +23,7 @@ class Listings extends Component {
 
     return listingsData.map((listing, index) => {
       var listImg = listing.background;
+      let modalClose = () => this.setState({ modalShow: false });
       // THIS IS THE BOX VIEW
       if (this.props.globalState.view === "box") {
         return (
@@ -37,8 +42,8 @@ class Listings extends Component {
                   </div>
                   <div className="col-md-9">
                     <div className="user-details">
-                      <span className="user-name">Nina Smith</span>
-                      <span className="post-date">05/08/2019</span>
+                      <span className="user-name">{listing.seller}</span>
+                      <span className="post-date">{listing.date}</span>
                     </div>
                     <div className="listing-details">
                       <div className="floor-space">
@@ -49,9 +54,20 @@ class Listings extends Component {
                         <i className="fas fa-bed" />
                         <span>{listing.rooms} bedrooms</span>
                       </div>
-                    </div>
-                    <div className="view-btn" onClick={this.viewListing}>
-                      View Listing
+                      <ButtonToolbar>
+                        <Button
+                          variant="primary"
+                          onClick={() => this.setState({ modalShow: true })}
+                        >
+                          View Listing
+                        </Button>
+
+                        <ListingsView
+                          show={this.state.modalShow}
+                          onHide={modalClose}
+                          address={listing.address}
+                        />
+                      </ButtonToolbar>
                     </div>
                   </div>
                 </div>
@@ -84,8 +100,8 @@ class Listings extends Component {
                   </div>
                   <div className="col-md-9">
                     <div className="user-details">
-                      <span className="user-name">Nina Smith</span>
-                      <span className="post-date">05/08/2019</span>
+                      <span className="user-name">{listing.seller}</span>
+                      <span className="post-date">{listing.date}</span>
                     </div>
                     <div className="listing-details">
                       <div className="floor-space">
@@ -97,13 +113,25 @@ class Listings extends Component {
                         <span>{listing.rooms} bedrooms</span>
                       </div>
                     </div>
-                    <div className="view-btn" onClick={this.viewListing}>
-                      View Listing
-                    </div>
-                    <div
-                      className={this.state.viewListing ? "" : "listing-active"}
-                    >
-                      <div id="listing" onClick={this.viewListing}>
+
+                    {/* Setting modal here */}
+                    <ButtonToolbar>
+                      <Button
+                        variant="primary"
+                        onClick={() => this.setState({ modalShow: true })}
+                      >
+                        View Listing
+                      </Button>
+
+                      <ListingsView
+                        show={this.state.modalShow}
+                        onHide={modalClose}
+                        address={listing.address}
+                      />
+                    </ButtonToolbar>
+                    <div>
+                      {/*  <div id="listing">
+                        <Button onClick={this.viewListing}>X</Button>
                         <div
                           className="background"
                           style={{
@@ -114,7 +142,7 @@ class Listings extends Component {
                         >
                           {listing.address}{" "}
                         </div>
-                      </div>{" "}
+                      </div> */}{" "}
                     </div>
                   </div>
                 </div>
@@ -142,6 +170,7 @@ class Listings extends Component {
   clickedBtn = () => {
     console.log("swag");
   };
+
   render() {
     return (
       <section id="listings">
