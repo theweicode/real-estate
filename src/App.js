@@ -26,7 +26,7 @@ class App extends Component {
       finished_basement: false,
       swimming_pool: false,
       gym: false,
-      filteredData: listingsData,
+      filteredData: [listingsData],
       populateFormsData: "",
       sortby: "price-dsc",
       view: "long",

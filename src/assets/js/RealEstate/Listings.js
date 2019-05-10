@@ -137,6 +137,7 @@ class Listings extends Component {
                         date={listing.date}
                         city={listing.city}
                         price={listing.price}
+                      
                       />
                     </ButtonToolbar>
                     <div>
