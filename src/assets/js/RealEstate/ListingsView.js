@@ -12,28 +12,40 @@ class ListingsView extends React.Component {
     if (this.props.carousel !== undefined) {
       images = this.props.carousel;
     }
+    console.log("listingsView: ", this.props);
 
     return (
       <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Using Grid in Modal
+            Listing Details
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <Row className="show-grid">
+            <img className="logo1" src="https://i.imgur.com/b0sEJQt.png" />
+            <h3>{this.props.address}</h3>
+            <h1>{this.props.city}</h1>
+            <h1>Status: Active</h1>
+
+            <h2>${this.props.price}</h2>
+            <p>Price</p>
+            <p>Bedrooms</p>
+            <h3>{this.props.bedrooms}</h3>
+            <h3>Sq. Ft.</h3>
+            <h3>{this.props.floorSpace}</h3>
+
+            {/*  <Row className="show-grid">
               <Col xs={6} md={8}>
-                <code>.col-xs-12 .col-md-8</code>
+                <h3>Seller: {this.props.seller}</h3>
               </Col>
               <Col xs={12} md={4}>
                 <code>.col-xs-6 .col-md-4</code>
               </Col>
-            </Row>
+            </Row> */}
 
             <Row className="show-grid">
-              <h3>{this.props.address}</h3>
-              <Col xs={6} md={4}>
+              {/* <Col xs={6} md={4}>
                 <code>.col-xs-6 .col-md-4</code>
               </Col>
               <Col xs={6} md={4}>
@@ -41,7 +53,7 @@ class ListingsView extends React.Component {
               </Col>
               <Col xs={6} md={4}>
                 <code>.col-xs-6 .col-md-4</code>
-              </Col>
+              </Col> */}
 
               <Carousel>
                 {images.map(function(name, index) {
@@ -53,8 +65,7 @@ class ListingsView extends React.Component {
                         alt="First slide"
                       />
                       <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>{index}</p>
+                        <p>{index + 1}</p>
                       </Carousel.Caption>
                     </Carousel.Item>
                   );

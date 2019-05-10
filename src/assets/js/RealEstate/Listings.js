@@ -131,6 +131,12 @@ class Listings extends Component {
                         onHide={modalClose}
                         address={listing.address}
                         carousel={listing.carousel}
+                        seller={listing.seller}
+                        bedrooms={listing.rooms}
+                        floorSpace={listing.floorSpace}
+                        date={listing.date}
+                        city={listing.city}
+                        price={listing.price}
                       />
                     </ButtonToolbar>
                     <div>
