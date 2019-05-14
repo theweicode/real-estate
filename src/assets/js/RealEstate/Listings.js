@@ -14,6 +14,8 @@ class Listings extends Component {
     /* this.modalShow = this.modalShow.bind(this); */
   }
 
+  componentDidMount() {}
+
   loopListings() {
     const { listingsData } = this.props;
 
@@ -137,7 +139,6 @@ class Listings extends Component {
                         date={listing.date}
                         city={listing.city}
                         price={listing.price}
-                      
                       />
                     </ButtonToolbar>
                     <div>

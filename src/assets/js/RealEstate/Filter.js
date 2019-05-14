@@ -15,7 +15,7 @@ class Filter extends Component {
   };
 
   componentWillMount() {
-    this.props.populateAction();
+    /* this.props.populateAction(); */
   }
 
   componentDidUpdate() {

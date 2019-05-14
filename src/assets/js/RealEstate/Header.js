@@ -69,6 +69,7 @@ class Header extends Component {
           this.setState({ username: "Guest" });
           this.setState({ guestLogin: true });
           console.log(this.state.username);
+          this.props.populateForms();
           // ...
         } else {
           // User is signed out.
