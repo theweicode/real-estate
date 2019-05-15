@@ -191,53 +191,55 @@ class Header extends Component {
           <Modal.Header closeButton>
             <Modal.Title>Log In</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Enter your login info here:</Modal.Body>
+          <Modal.Body>
+            <div className="col-md-12">
+              <div className="mb-3 text-secondary">
+                Enter your login info here:
+              </div>
+              <form>
+                <div className="form-group mt-3">
+                  <label id="inputGroup-sizing-default">Email</label>
 
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text" id="inputGroup-sizing-default">
-                Email
-              </span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="email"
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label id="inputGroup-sizing-default">Password</label>
+
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="password"
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </form>
             </div>
-            <input
-              type="text"
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              name="email"
-              onChange={this.handleChange}
-            />
-          </div>
 
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text" id="inputGroup-sizing-default">
-                Password
-              </span>
-            </div>
-            <input
-              type="text"
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              name="password"
-              onChange={this.handleChange}
-            />
-          </div>
-          {loginEr}
-          <Button
-            variant="primary"
-            onClick={event => {
-              this.handleLogin();
-              this.hideLogin();
-            }}
-          >
-            Login
-          </Button>
-
+            {loginEr}
+          </Modal.Body>
           <Modal.Footer>
             <Button
-              variant="dark"
+              variant="primary"
+              className="col-xs-12 col-sm-5 btn-sm"
+              onClick={event => {
+                this.handleLogin();
+                this.hideLogin();
+              }}
+            >
+              Login
+            </Button>
+            <Button
+              variant="secondary"
+              className="col-xs-12 col-sm-5 btn-sm"
               onClick={event => {
                 this.hideLogin();
                 this.handleGuestLogin();
@@ -245,9 +247,13 @@ class Header extends Component {
             >
               Login As Guest
             </Button>
-            <Button variant="secondary" onClick={this.hideLogin}>
+            {/*             <Button
+              variant="secondary"
+              className="buttonstyle"
+              onClick={this.hideLogin}
+            >
               Close
-            </Button>
+            </Button> */}
           </Modal.Footer>
         </Modal>
 

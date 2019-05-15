@@ -9,7 +9,41 @@ var listingsData = [
     extras: ["gym", "finished basement"],
     homeType: "Condo",
     image:
-      "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+
+    carousel: [
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_1.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_3.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_6.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_9.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_8.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_11.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_15.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_46.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_16.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_20.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_18.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_21.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_42.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_44.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_10.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_7.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_36.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_32.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_33.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_26.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_28.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_27.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_35.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_39.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_40.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_41.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_24.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_13.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_37.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_38.jpg",
+      "https://ssl.cdn-redfin.com/system_files/media/279506_JPG/item_52.jpg"
+    ]
   },
   {
     address: "1433 Mural Dr",

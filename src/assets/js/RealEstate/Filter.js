@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
 
 class Filter extends Component {
   constructor() {

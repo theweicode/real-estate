@@ -4,8 +4,11 @@ import Filter from "./assets/js/RealEstate/Filter";
 import Listings from "./assets/js/RealEstate/Listings";
 import firebase from "./assets/js/RealEstate/Firebase";
 import AdSense from "react-adsense";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
-/* import listingsData from "./assets/js/RealEstate/Data/listingsData"; */
+import listingsData from "./assets/js/RealEstate/Data/listingsData";
 
 import "./assets/sass/main.scss";
 
@@ -15,7 +18,7 @@ class App extends Component {
 
     this.state = {
       name: "Joe",
-      listingsData: [],
+      listingsData: listingsData,
       city: "All",
       homeType: "All",
       bedrooms: 0,
@@ -27,7 +30,7 @@ class App extends Component {
       finished_basement: false,
       swimming_pool: false,
       gym: false,
-      filteredData: [],
+      filteredData: listingsData,
       populateFormsData: "",
       sortby: "price-dsc",
       view: "long",
@@ -101,6 +104,17 @@ class App extends Component {
           } else if (change.type === "removed") {
             this.handleRemoveFromList(change.doc.id);
           }
+        });
+      });
+
+    firebase
+      .firestore()
+      .collection("listingsData")
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
         });
       });
   }
@@ -208,49 +222,47 @@ class App extends Component {
   }
 
   populateForms() {
-    if (this.state.filteredData.length > 0) {
-      // city
-      let cities = this.state.listingsData.map(item => {
-        return item.city;
-      });
+    // city
+    let cities = this.state.listingsData.map(item => {
+      return item.city;
+    });
 
-      console.log("populate forms cities: ", this.state.listingsData);
+    console.log("populate forms cities: ", this.state.listingsData);
 
-      //Set takes the list and make sure there are no doubles
-      cities = new Set(cities);
-      cities = [...cities];
-      cities = cities.sort();
-      // hometype
-      let homeTypes = this.state.listingsData.map(item => {
-        return item.homeType;
-      });
-      //Set takes the list and make sure there are no doubles
-      homeTypes = new Set(homeTypes);
-      homeTypes = [...homeTypes];
-      homeTypes = homeTypes.sort();
+    //Set takes the list and make sure there are no doubles
+    cities = new Set(cities);
+    cities = [...cities];
+    cities = cities.sort();
+    // hometype
+    let homeTypes = this.state.listingsData.map(item => {
+      return item.homeType;
+    });
+    //Set takes the list and make sure there are no doubles
+    homeTypes = new Set(homeTypes);
+    homeTypes = [...homeTypes];
+    homeTypes = homeTypes.sort();
 
-      // bedrooms
-      let bedrooms = this.state.listingsData.map(item => {
-        return item.rooms;
-      });
-      //Set takes the list and make sure there are no doubles
-      bedrooms = new Set(bedrooms);
-      bedrooms = [...bedrooms];
-      bedrooms = bedrooms.sort();
+    // bedrooms
+    let bedrooms = this.state.listingsData.map(item => {
+      return item.rooms;
+    });
+    //Set takes the list and make sure there are no doubles
+    bedrooms = new Set(bedrooms);
+    bedrooms = [...bedrooms];
+    bedrooms = bedrooms.sort();
 
-      this.setState(
-        {
-          populateFormsData: {
-            homeTypes,
-            bedrooms,
-            cities
-          }
-        },
-        () => {
-          console.log(this.state);
+    this.setState(
+      {
+        populateFormsData: {
+          homeTypes,
+          bedrooms,
+          cities
         }
-      );
-    }
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   }
 
   render() {
@@ -258,21 +270,27 @@ class App extends Component {
       <div>
         <Header populateForms={this.populateForms} />
 
-        <AdSense.Google
+        {/* <AdSense.Google
           client="ca-pub-4046770003573980"
           slot="7806394673"
           style={{ display: "block" }}
           layout="in-article"
           format="fluid"
-        />
+        /> */}
         <section id="content-area">
-          <Filter change={this.change} globalState={this.state} />
-          <Listings
-            listingsData={this.state.filteredData}
-            change={this.change}
-            globalState={this.state}
-            changeView={this.changeView}
-          />
+          <Row>
+            <Col xs="12" sm="12" md="3">
+              <Filter change={this.change} globalState={this.state} />
+            </Col>
+            <Col xs="12" sm="12" md="9">
+              <Listings
+                listingsData={this.state.filteredData}
+                change={this.change}
+                globalState={this.state}
+                changeView={this.changeView}
+              />
+            </Col>
+          </Row>
         </section>
       </div>
     );

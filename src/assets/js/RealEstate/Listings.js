@@ -3,6 +3,9 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ListingsView from "./ListingsView";
 import ButtonToolbar from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 class Listings extends Component {
   constructor() {
@@ -217,6 +220,7 @@ class Listings extends Component {
             </div>
           </div>
         </section>
+
         <section className="listings-results">
           <div className="row">{this.loopListings()} </div>
         </section>
