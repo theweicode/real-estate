@@ -3,6 +3,8 @@ import Header from "./assets/js/RealEstate/Header.js";
 import Filter from "./assets/js/RealEstate/Filter";
 import Listings from "./assets/js/RealEstate/Listings";
 import firebase from "./assets/js/RealEstate/Firebase";
+import AdSense from "react-adsense";
+
 /* import listingsData from "./assets/js/RealEstate/Data/listingsData"; */
 
 import "./assets/sass/main.scss";
@@ -256,6 +258,13 @@ class App extends Component {
       <div>
         <Header populateForms={this.populateForms} />
 
+        <AdSense.Google
+          client="ca-pub-4046770003573980"
+          slot="7806394673"
+          style={{ display: "block" }}
+          layout="in-article"
+          format="fluid"
+        />
         <section id="content-area">
           <Filter change={this.change} globalState={this.state} />
           <Listings

@@ -8,6 +8,7 @@
     "firebaseui": "^3.6.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
+    "react-adsense": "0.0.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"
