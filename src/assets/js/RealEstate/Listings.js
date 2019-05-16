@@ -6,6 +6,7 @@ import ButtonToolbar from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import AdComponent from "./AdComponent";
 
 class Listings extends Component {
   constructor() {
@@ -220,7 +221,7 @@ class Listings extends Component {
             </div>
           </div>
         </section>
-
+        <AdComponent />
         <section className="listings-results">
           <div className="row">{this.loopListings()} </div>
         </section>
