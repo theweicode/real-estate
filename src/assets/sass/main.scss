@@ -94,9 +94,100 @@ body {
 .register-btn,
 .login-btn {
   cursor: pointer;
+  padding-top: 10px;
 }
 
 .loggedinas {
 
   color: red;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 800px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #555;
+}
+
+.btn-primary{
+  background: #d84549;
+  padding: 7px 25px;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  border-color: #d84549;
+}
+
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #ff694c;
+  border-color: #ff694c;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem transparent;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #d1536b;
+  border-color: #d1536b;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #d84549;
+  border-color: #ff7579;
+  
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem transparent;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #555;
+  border-color: #555;
+    padding: 7px 25px;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #6d6c6c;
+  border-color: #6d6c6c;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+  box-shadow: 0 0 0 0.2rem transparent;
+}
+
+.btn-secondary.disabled, .btn-secondary:disabled {
+  color: #fff;
+  background-color: #555;
+  border-color: #555;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #555;
+  border-color: #555;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem transparent;
+}
+
+.linkline{
+  color: #ccc;
 }
