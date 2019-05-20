@@ -177,7 +177,7 @@ class Header extends Component {
             <a className="login-btn" onClick={this.showLogin}>
               Log In
             </a>
-            <a onClick={this.showSignUp} className="register-btn">
+            <a onClick={this.showSignUp} className="btn-primary">
               Register
             </a>
           </nav>
@@ -192,14 +192,14 @@ class Header extends Component {
             <Modal.Title>Log In</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+          <div className="row">
             <div className="col-md-12">
-              <div className="mb-3 text-secondary">
-                Enter your login info here:
-              </div>
+              <h1 className="mb-3">
+                Welcome Back!
+              </h1>
               <form>
                 <div className="form-group mt-3">
                   <label id="inputGroup-sizing-default">Email</label>
-
                   <input
                     type="text"
                     className="form-control"
@@ -222,14 +222,12 @@ class Header extends Component {
                   />
                 </div>
               </form>
-            </div>
-
+              
             {loginEr}
-          </Modal.Body>
-          <Modal.Footer>
+
             <Button
               variant="primary"
-              className="col-xs-12 col-sm-5 btn-sm"
+              className="btnmin col-sm-12 button btn-lg mt-4 mb-1"
               onClick={event => {
                 this.handleLogin();
                 this.hideLogin();
@@ -237,9 +235,16 @@ class Header extends Component {
             >
               Login
             </Button>
+
+            <div class="col-md-12">
+                  <div class="login-or">
+                    <hr></hr>
+                    <span class="span-or">or</span>
+                  </div>
+            </div>
             <Button
               variant="secondary"
-              className="col-xs-12 col-sm-5 btn-sm"
+              className="btn-outline-secondary btnmin col-sm-12 button btn-lg"
               onClick={event => {
                 this.hideLogin();
                 this.handleGuestLogin();
@@ -247,14 +252,15 @@ class Header extends Component {
             >
               Login As Guest
             </Button>
-            {/*             <Button
-              variant="secondary"
-              className="buttonstyle"
-              onClick={this.hideLogin}
-            >
-              Close
-            </Button> */}
-          </Modal.Footer>
+            </div>
+            </div>
+              </Modal.Body>
+
+
+              <div className="col-sm-12 text-secondary text-center">
+                <p>Don't have an account? <a className="linkline"><u>Sign up</u></a></p>
+              </div>
+
         </Modal>
 
         <Modal show={this.state.showSignUp} onHide={this.hideSignUp}>
