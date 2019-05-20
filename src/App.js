@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
+
 import listingsData from "./assets/js/RealEstate/Data/listingsData";
 
 import "./assets/sass/main.scss";

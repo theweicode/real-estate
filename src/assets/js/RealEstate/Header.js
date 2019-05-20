@@ -36,6 +36,9 @@ class Header extends Component {
   //navbar modal controls
   // login
   showSignUp() {
+    if (this.state.showLogin) {
+      this.setState({ showLogin: false });
+    }
     this.setState({ showSignUp: true });
   }
   hideSignUp() {
@@ -155,6 +158,8 @@ class Header extends Component {
   }
 
   render() {
+    let isLoggedIn;
+
     let logUsr;
     let loginEr = this.state.loginError;
     if (this.state.guestLogin) {
@@ -164,6 +169,12 @@ class Header extends Component {
           <Button onClick={this.handleSignOut}>Sign Out</Button>
         </>
       );
+    } else {
+      logUsr = (
+        <a onClick={this.showLogin} className="btn-primary">
+          Login
+        </a>
+      );
     }
     return (
       <>
@@ -171,16 +182,8 @@ class Header extends Component {
           <a href="/" className="logo">
             <img src="https://i.imgur.com/1fXUQ8a.png" />
           </a>
-          {logUsr}
 
-          <nav>
-            <a className="login-btn" onClick={this.showLogin}>
-              Log In
-            </a>
-            <a onClick={this.showSignUp} className="btn-primary">
-              Register
-            </a>
-          </nav>
+          <nav>{logUsr}</nav>
         </header>
         <Modal
           show={this.state.showLogin}
@@ -192,75 +195,76 @@ class Header extends Component {
             <Modal.Title>Log In</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <div className="row">
-            <div className="col-md-12">
-              <h1 className="mb-3">
-                Welcome Back!
-              </h1>
-              <form>
-                <div className="form-group mt-3">
-                  <label id="inputGroup-sizing-default">Email</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="email"
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label id="inputGroup-sizing-default">Password</label>
+            <div className="row">
+              <div className="col-md-12">
+                <h1 className="mb-3">Welcome Back!</h1>
+                <form>
+                  <div className="form-group mt-3">
+                    <label id="inputGroup-sizing-default">Email</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      name="email"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label id="inputGroup-sizing-default">Password</label>
 
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="password"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </form>
-              
-            {loginEr}
+                    <input
+                      type="text"
+                      className="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      name="password"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </form>
 
-            <Button
-              variant="primary"
-              className="btnmin col-sm-12 button btn-lg mt-4 mb-1"
-              onClick={event => {
-                this.handleLogin();
-                this.hideLogin();
-              }}
-            >
-              Login
-            </Button>
+                {loginEr}
 
-            <div class="col-md-12">
+                <Button
+                  variant="primary"
+                  className="btnmin col-sm-12 button btn-lg mt-4 mb-1"
+                  onClick={event => {
+                    this.handleLogin();
+                    this.hideLogin();
+                  }}
+                >
+                  Login
+                </Button>
+
+                <div class="col-md-12">
                   <div class="login-or">
-                    <hr></hr>
+                    <hr />
                     <span class="span-or">or</span>
                   </div>
-            </div>
-            <Button
-              variant="secondary"
-              className="btn-outline-secondary btnmin col-sm-12 button btn-lg"
-              onClick={event => {
-                this.hideLogin();
-                this.handleGuestLogin();
-              }}
-            >
-              Login As Guest
-            </Button>
-            </div>
-            </div>
-              </Modal.Body>
-
-
-              <div className="col-sm-12 text-secondary text-center">
-                <p>Don't have an account? <a className="linkline"><u>Sign up</u></a></p>
+                </div>
+                <Button
+                  variant="secondary"
+                  className="btn-outline-secondary btnmin col-sm-12 button btn-lg"
+                  onClick={event => {
+                    this.hideLogin();
+                    this.handleGuestLogin();
+                  }}
+                >
+                  Login As Guest
+                </Button>
               </div>
+            </div>
+          </Modal.Body>
 
+          <div className="col-sm-12 text-secondary text-center">
+            <p>
+              Don't have an account?{" "}
+              <a className="linkline">
+                <u onClick={this.showSignUp}>Sign up</u>
+              </a>
+            </p>
+          </div>
         </Modal>
 
         <Modal show={this.state.showSignUp} onHide={this.hideSignUp}>
