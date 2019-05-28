@@ -171,7 +171,7 @@ class Header extends Component {
       );
     } else {
       logUsr = (
-        <a onClick={this.showLogin} className="btn-primary">
+        <a onClick={this.showLogin} className="btn-primary btnmin">
           Login
         </a>
       );
@@ -227,6 +227,7 @@ class Header extends Component {
                 {loginEr}
 
                 <Button
+                  type="button"
                   variant="primary"
                   className="btnmin col-sm-12 button btn-lg mt-4 mb-1"
                   onClick={event => {
@@ -261,87 +262,131 @@ class Header extends Component {
             <p>
               Don't have an account?{" "}
               <a className="linkline">
-                <u onClick={this.showSignUp}>Sign up</u>
+                <u className="signup" onClick={this.showSignUp}>
+                  Sign up
+                </u>
               </a>
             </p>
           </div>
         </Modal>
 
-        <Modal show={this.state.showSignUp} onHide={this.hideSignUp}>
+        <Modal
+          show={this.state.showSignUp}
+          onHide={this.hideSignUp}
+          animation="true"
+          centered="true"
+        >
           <Modal.Header closeButton>
             <Modal.Title>Sign Up</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Enter your login info here:</Modal.Body>
+          <Modal.Body>
+            <div className="row">
+              <div className="col-md-12">
+                <h1 className="mb-3">Create an Account:</h1>
+                <form>
+                  <div className="form-group mt-3">
+                    <label id="inputGroup-sizing-default">Email</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      name="email"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label id="inputGroup-sizing-default">Password</label>
 
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text" id="inputGroup-sizing-default">
-                Email
-              </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      name="password"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </form>
+
+                {/*   <div className="input-group mt-3">
+                  <div className="input-group-prepend">
+                    <span
+                      className="input-group-text"
+                      id="inputGroup-sizing-default"
+                    >
+                      Email
+                    </span>
+                  </div>
+                  <form id="signupform">
+                    <input
+                      type="text"
+                      onKeyPress={e => {
+                        if (e.key === "Enter") e.preventDefault();
+                      }}
+                      className="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      name="email"
+                      onChange={this.handleChange}
+                    />
+                  </form>
+                </div> 
+
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span
+                      className="input-group-text"
+                      id="inputGroup-sizing-default"
+                    >
+                      Password
+                    </span>
+                  </div>
+
+                  <form id="passwordfield">
+                    <input
+                      type="text"
+                      onKeyPress={e => {
+                        if (e.key === "Enter") e.preventDefault();
+                      }}
+                      className="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      name="password"
+                      onChange={this.handleChange}
+                    />
+                  </form>
+                </div>
+              */}
+                {loginEr}
+                <Button
+                  className="btnmin col-sm-12 button btn-lg mt-4 mb-1"
+                  variant="primary"
+                  onClick={this.handleSignUp}
+                >
+                  Create Account
+                </Button>
+              </div>
             </div>
-            <form id="signupform">
-              <input
-                type="text"
-                onKeyPress={e => {
-                  if (e.key === "Enter") e.preventDefault();
-                }}
-                className="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                name="email"
-                onChange={this.handleChange}
-              />
-            </form>
-          </div>
-
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text" id="inputGroup-sizing-default">
-                Password
-              </span>
-            </div>
-
-            <form id="passwordfield">
-              <input
-                type="text"
-                onKeyPress={e => {
-                  if (e.key === "Enter") e.preventDefault();
-                }}
-                className="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                name="password"
-                onChange={this.handleChange}
-              />
-            </form>
-          </div>
-          {loginEr}
-          <Button variant="primary" onClick={this.handleSignUp}>
-            Create Account
-          </Button>
+          </Modal.Body>
 
           <Modal.Footer>
-            <Button
-              variant="warning"
-              onClick={event => {
-                this.hideSignUp();
-                this.showLogin();
-              }}
-            >
-              Already have an account?
-            </Button>
-            <Button
-              variant="dark"
-              onClick={event => {
-                this.hideSignUp();
-                this.handleGuestLogin();
-              }}
-            >
-              Login As Guest
-            </Button>
-            <Button variant="secondary" onClick={this.hideSignUp}>
-              Close
-            </Button>
+            <div className="col-sm-12 text-secondary text-center">
+              <p>
+                Already have an{" "}
+                <a className="linkline">
+                  <u
+                    className="signup"
+                    onClick={event => {
+                      this.showLogin();
+                      this.hideSignUp();
+                    }}
+                  >
+                    account?
+                  </u>
+                </a>
+              </p>
+            </div>
           </Modal.Footer>
         </Modal>
       </>

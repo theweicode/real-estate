@@ -9,32 +9,112 @@ import Button from "react-bootstrap/Button";
 let images = [];
 class ListingsView extends React.Component {
   render() {
+    let mortgage = Math.round(this.props.price / 183.5);
+    let saleprice = this.props.price;
+    console.log("sales price:", saleprice);
+    console.log("listing view address: ", this.props.index);
     if (this.props.carousel !== undefined) {
       images = this.props.carousel;
     }
-    console.log("listingsView: ", this.props);
+    /* console.log("listingsView: ", this.props); */
 
     return (
-      <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter">
+      <Modal
+        {...this.props}
+        size="xl"
+        aria-labelledby="example-modal-sizes-title-xl"
+        centered
+      >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Listing Details
+          <img className="logo1" src="https://i.imgur.com/b0sEJQt.png" />
+          <Modal.Title id="example-modal-sizes-title-xl">
+            <div className="wrapper">
+              <div className="box-1">
+                <h3 className="address">{this.props.address}</h3>
+                <div className="citystate">
+                  {this.props.city}, {this.props.state}{" "}
+                </div>
+                <div className="stats">
+                  <ul>
+                    <li>{this.props.bedrooms} beds</li>
+                    <li>
+                      {this.props.floorSpace}sqft lot size {this.props.type}
+                    </li>
+                    <li> {this.props.type}</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="box-2">
+                <div className="forsale">FOR SALE</div>
+                <div className="price">${this.props.price}</div>
+                <div className="mortgage">Est. Mortgage ${mortgage}/mo</div>
+              </div>
+              <div className="box-3">
+                <Button className="listingviewbtn" variant="light">
+                  {" "}
+                  <i class="fas fa-heart" />
+                  Save{" "}
+                </Button>
+                <Button className="istingviewbtn" variant="light">
+                  <i class="far fa-envelope" />
+                  Share
+                </Button>
+              </div>
+              <div className="box-4">
+                <img src="./img/stockportraits/man1.jpg" width="100px" />
+              </div>
+              <div className="box-5">
+                <div className="agentname">Richard Jett</div>
+                <div className="contact">LISTING AGENT</div>
+                <div className="phone">(619)-555-2712</div>
+                <div className="rating">
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="fas fa-star" />
+                  <i className="reviews">(125)</i>
+                </div>
+              </div>
+            </div>
+
+            {/*     <Container>
+              <Row>
+                <Col xl={6} className="lfcol">
+                  <h3 className="address">{this.props.address}</h3>
+                  <div className="citystate">
+                    {this.props.city}, {this.props.state}{" "}
+                  </div>
+                  <div className="stats">
+                    <ul>
+                      <li>{this.props.bedrooms} beds</li>
+                      <li>
+                        {this.props.floorSpace}sqft lot size {this.props.type}
+                      </li>
+                      <li> {this.props.type}</li>
+                    </ul>
+                  </div>
+                </Col>
+                <Col xl={6} className="rtcol">
+                  <div className="forsale">FOR SALE</div>
+                  <div className="price">${this.props.price}</div>
+                  <div className="mortgage">Est. Mortgage ${mortgage}/mo</div>
+                  <Button className="listingviewbtn" variant="light">
+                    {" "}
+                    <i class="fas fa-heart" />
+                    Save{" "}
+                  </Button>
+                  <Button className="istingviewbtn" variant="light">
+                    <i class="far fa-envelope" />
+                    Share
+                  </Button>
+                </Col>
+              </Row>
+            </Container> */}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <img className="logo1" src="https://i.imgur.com/b0sEJQt.png" />
-            <h3>{this.props.address}</h3>
-            <h1>{this.props.city}</h1>
-            <h1>Status: Active</h1>
-
-            <h2>${this.props.price}</h2>
-            <p>Price</p>
-            <p>Bedrooms</p>
-            <h3>{this.props.bedrooms}</h3>
-            <h3>Sq. Ft.</h3>
-            <h3>{this.props.floorSpace}</h3>
-
             {/*  <Row className="show-grid">
               <Col xs={6} md={8}>
                 <h3>Seller: {this.props.seller}</h3>
@@ -75,7 +155,12 @@ class ListingsView extends React.Component {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
+          <Button
+            className="btn-outline-secondary btnmin col-sm-12 button btn-lg"
+            onClick={this.props.onHide}
+          >
+            Request Info
+          </Button>
         </Modal.Footer>
       </Modal>
     );

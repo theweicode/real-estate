@@ -6,7 +6,6 @@ import ButtonToolbar from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import AdComponent from "./AdComponent";
 
 class Listings extends Component {
   constructor() {
@@ -75,6 +74,7 @@ class Listings extends Component {
                           onHide={modalClose}
                           address={listing.address}
                           carousel={listing.carousel}
+                          key={index}
                         />
                       </ButtonToolbar>
                     </div>
@@ -136,6 +136,7 @@ class Listings extends Component {
                         show={this.state.modalShow}
                         onHide={modalClose}
                         address={listing.address}
+                        state={listing.state}
                         carousel={listing.carousel}
                         seller={listing.seller}
                         bedrooms={listing.rooms}
@@ -143,6 +144,7 @@ class Listings extends Component {
                         date={listing.date}
                         city={listing.city}
                         price={listing.price}
+                        type={listing.type}
                       />
                     </ButtonToolbar>
                     <div>
@@ -221,7 +223,7 @@ class Listings extends Component {
             </div>
           </div>
         </section>
-        <AdComponent />
+
         <section className="listings-results">
           <div className="row">{this.loopListings()} </div>
         </section>
